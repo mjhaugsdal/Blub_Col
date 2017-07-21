@@ -1,13 +1,17 @@
 
 ##
 ## Blub Coloring
-##
-##
+## By:  Markus Haugsdal
+## 
  
-
+from __future__ import print_function
 
 global k
 
+
+# Main Driver
+#
+#
 def main():
 
     print("Original Data:")
@@ -18,14 +22,31 @@ def main():
                 [ 0, 'x', 0 , 0, 0,  'x', 0, 'x',0,'x',0, 0 ],
                 [ 0, 'x', 0 , 0, 0,  'x', 0, 'x',0,0,'x', 0 ],
                 [ 0,  0 , 0, 0,   0,  0,  0, 0, 0, 0, 0 , 0 ]]
+    
 
+
+    DataList2 = [[ 0,  0,  0 , 0, 0,   0,  0,  0, 0, 0, 0, 0 ],
+                [ 0, 'x','x','x','x','x', 0,'x','x','x','x','x',0,0 ],
+                [ 0, 'x', 0  ,0,  0 ,'x', 0, 0,0, 'x',0,0,0,0 ],
+                [ 0, 'x', 0 , 0 , 0 ,'x', 0, 0,0, 'x',0,0,0,0 ],
+                [ 0, 'x', 0 , 0,  0, 'x', 0, 0,0, 'x',0,0,0,0 ],
+                [ 0, 'x','x','x','x','x', 0, 0,0, 'x',0,0,0,0 ],
+                [ 0,  0 , 0, 0,   0,  0,  0, 0, 0, 0, 0 , 0 ]]
    
-    #print (DataList)
+    
+    colorImg(DataList)
+    colorImg(DataList2)
+
+
+
+
+def colorImg(DataList):
+
 
     #Print Original Data:
     for x in range (0, 7):
         print("")
-        for y in range (0, 11):
+        for y in range (0, 12):
             if DataList[x][y] == 0:
                 print (' ', end = "")
             else:
@@ -54,8 +75,10 @@ def main():
 
     #Scan left->right, top->bottom
 
+    # All logic for coloring blubs
+
     for x in range (0, 7):
-        for y in range (0, 11):
+        for y in range (0, 12):
             if f[x][y] != 0:
                 
                 #IF F(xu,yu = 1 & f(xl, yl = 0)
@@ -81,50 +104,35 @@ def main():
 
                    #color (xc,yc) = color(xl,yl)
 
-                #Diagonal!
-                #Check Down+Left, Down+right, Up+Left, Up+Right
-                
-                #
-
                 if f[x-1][y] == 0 and f[x][y-1] == 0:
 
+                    #Check the diagonal
                     if f[x+1][y-1] != 0 or f[x-1][y-1] != 0:
+                       
+                        
+                        #or f[x-1][y] != 0 or f[x-1][y] != 0:
 
                         f[x][y] = k-1
                     
                     else:
+
                         f[x][y] = k
                         k+=1            
-                   
-                    #if()
-
-
-
+                  
 
                # if f[x][y+1]] == 1 and f[x-1][y]]
 
-    
+    # Print function for new image
     print("New image")
     for x in range (0, 7):
         print("")
-        for y in range (0, 11):
+        for y in range (0, 12):
             if f[x][y] == 0:
                 print (' ', end = "")
             else:
                 print (f[x][y] , end="" ) 
 
-
     print('\n')
-
-
-
-
-
-def COLOR(x,y):
-
-
-
-    return color
 
 main()
 
